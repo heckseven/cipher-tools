@@ -18,7 +18,7 @@ def getContent():
 
 def removeWhitespace(string):
     if input("Remove spaces and newlines from cipher? (yes/no) ") == "yes":
-        string = re.sub(r"[ ]*[\n]*", "", string)
+        string = re.sub(r"[\s]*", "", string)
         return string
     else:
         return string
