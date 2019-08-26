@@ -8,11 +8,11 @@ import re
 L2I = dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ",range(26)))
 I2L = dict(zip(range(26),"ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
 
-def whichWay():
-    direction = input("Do you want to 'encipher' or 'decipher'? ")
+direction = input("Do you want to 'encipher' or 'decipher'? ")
+
+def whichWay(hecktext):
+    key = keyfinder()
     if direction == 'encipher':
-        hecktext = heckinGet()
-        key = keyfinder()
         if key == "all":
             key = 1
             while key <= 26:
@@ -23,8 +23,6 @@ def whichWay():
             output = encipher(hecktext, key)
             print( "rot" + str(key) + " " + output)
     else:
-        hecktext = heckinGet()
-        key = keyfinder()
         if key == "all":
             key = 1
             while key <= 26:
@@ -34,6 +32,9 @@ def whichWay():
         else:
             output = decipher(hecktext, key)
             print( "rot" + str(key) + " " + output)
+    if input("\nTry another rot? (yes/no) ") == "yes":
+        whichWay(hecktext)
+
 
 def heckinGet():
     cipherType = input("Input 'string' or 'file'? ")
@@ -72,4 +73,4 @@ def decipher(str, key):
         else: plaintext2 += c
     return plaintext2
 
-whichWay()
+whichWay(heckinGet())
